@@ -15,34 +15,53 @@
     <header>
         <nav>
             <div class="info-container">
-                <img src="img/avatar.png" alt="">
+                <img src="img/avatar.png" alt="profile-pic">
                 <div class="info-text">
                     <p id="text-title">Work hard</p>
                     <h3 id="name">Jean Berin</h3>
                 </div>
             </div>
 
+            <hr>
+
             <div class="sidebar-task-section-container">
-                <div class="task-heading-text">
-                    <i class="fa-solid fa-calendar-day"></i>
-                    <p class="text-title">Today's tasks</p>
+                <div class="individual-section-container">
+                    <div class="task-heading-text">
+                        <i class="fa-solid fa-calendar-day"></i>
+                        <p class="text-title">Today's tasks</p>
+                    </div>
+                    <div class="category-content">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <ul class="sub-task-section-text">
+                            <li><div class="category-btn pink"></div>Personal</li>
+                            <li><div class="category-btn lightblue"></div>Freelance</li>
+                            <li><div class="category-btn dandelion"></div>Work</li>
+                            <li class="add-filter"><i class="fa-solid fa-plus"></i>Add filter</li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="sub-task-section-text">
-                    <li>Personal</li>
-                    <li>Freelance</li>
-                    <li>Work</li>
-                    <li>Add filter</li>
-                </ul>
-                <div class="task-heading-text">
-                    <i class="fa-solid fa-calendar-days"></i>
-                    <p class="text-title">Scheduled tasks</p>
+                <div class="individual-section-container">
+                    <div class="task-heading-text">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <p class="text-title">Scheduled tasks</p>
+                    </div>
+                    <div class="category-content">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <ul class="sub-task-section-text">
+                            <!-- <li>Personal</li>
+                            <li>Freelance</li>
+                            <li>Work</li>
+                            <li class="add-filter">Add filter</li> -->
+                        </ul>
+                    </div>
                 </div>
-                <ul class="sub-task-section-text">
-                </ul>
-                <div class="task-heading-text">
-                    <i class="fa-solid fa-gear"></i>
-                    <p class="text-title">Settings</p>
+                <div class="individual-section-container">
+                    <div class="task-heading-text">
+                        <i class="fa-solid fa-gear"></i>
+                        <p class="text-title">Settings</p>
+                    </div>
                 </div>
+                
             </div>
         </nav>
     </header>
@@ -53,13 +72,20 @@
 
         </div>
         <form id="enter-new-task">
-            <input type="text" placeholder="What is your next task?" id="input-task">
+            <div class="input-text-container">
+                <div class="category-btn-container">
+                    <div class="category-btn pink"></div>
+                    <div class="category-btn lightblue"></div>
+                    <div class="category-btn dandelion"></div>
+                </div>
+                <input type="text" placeholder="What is your next task?" id="input-task">
+            </div>
             <button type="submit" id="submit"><i class="fa-solid fa-plus"></i></button>
-            <!-- <input type="submit" value="ADD TASK" id="submit"></input> -->
         </form>
         <div id="tasks">
             <!-- <div class="task">
                 <div class="task-content">
+                    <div.category-btn></div>
                     <input type="text" class="text" value="hi" readonly>
                 </div>
                 <div class="btn-container">

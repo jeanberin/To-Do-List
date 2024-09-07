@@ -4,10 +4,23 @@ const addTaskBtn = document.getElementById('submit');
 const taskList = document.getElementById('tasks');
 let storeToDoList = [];
 let list = [];
+let colorList = [];
+let categoryList = ['pink', 'lightblue', 'dandelion'];
 
 function addTask() {
-    list.push(inputNewTask.value);
-    renderList();
+    if (inputNewTask.value === '') {
+        alert('Please enter task.');
+    } else {
+        list.push(inputNewTask.value);
+        // selectCategory();
+        renderList();
+    }
+}
+
+function selectCategory() {
+    let selectedCategory = categoryList[generateRandomNumber(0,2)];
+    colorList.push(selectedCategory);
+    console.log(colorList);
 }
 
 function renderList() {
@@ -18,6 +31,21 @@ function renderList() {
     for(let i = 0; i < list.length; i++) {
         const newTask = document.createElement('div');
         newTask.setAttribute('class', 'task');
+        
+
+
+
+
+
+        const categoryBtn = document.createElement('div');
+        categoryBtn.setAttribute('class', 'category-btn');
+        // categoryBtn.classList.add(`${colorList[i]}`);
+        // FOR ADDING COLOR PROPERTY OF CATEGORY-BTN
+        categoryBtn.classList.add(`${categoryList[generateRandomNumber(0,2)]}`);
+        
+
+
+
 
         const taskContentContainer = document.createElement('div');
         taskContentContainer.setAttribute('class', 'task-content');
@@ -26,6 +54,18 @@ function renderList() {
         readOnlyTask.readOnly = true;
         readOnlyTask.type = 'text';
         readOnlyTask.setAttribute('value', list[i]);
+
+
+
+
+
+        taskContentContainer.append(categoryBtn);
+
+
+
+
+
+
         taskContentContainer.append(readOnlyTask);
         newTask.append(taskContentContainer);
 
@@ -34,10 +74,8 @@ function renderList() {
 
         const editBtn = document.createElement('button');
         editBtn.addEventListener('click', function() {
-            // if (editBtn.textContent === 'EDIT') {
             if (editBtn.innerHTML === '<i class="fa-solid fa-pen"></i>') {
                 readOnlyTask.readOnly = false
-                // editBtn.textContent = 'SAVE';
                 editBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i>';
                 originalTask = readOnlyTask.value;
                 indexOfOriginalTask = list.indexOf(originalTask);
@@ -46,14 +84,12 @@ function renderList() {
         
             } else {
                 readOnlyTask.readOnly = true;
-                // editBtn.textContent = 'EDIT';
                 editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
                 list[indexOfOriginalTask] = readOnlyTask.value;
                 saveToDoList();
                 console.log(list);
             }
         })
-        // editBtn.textContent = 'EDIT';
         editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
 
         const deleteBtn = document.createElement('button');
@@ -61,10 +97,16 @@ function renderList() {
             let childrenArray = Array.from(taskList.children);
             console.log(childrenArray);
             list.splice(childrenArray.indexOf(taskList.removeChild(newTask)), 1);
+
+
+
+            // colorList.splice(childrenArray.indexOf(taskList.removeChild(newTask)), 1)
+
+
+
             saveToDoList();
             console.log(list);
         })
-        // deleteBtn.textContent = 'DELETE';
         deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
 
         btnContainer.append(editBtn);
@@ -83,14 +125,25 @@ taskForm.addEventListener('submit', function(e) {
 
 function saveToDoList() {
     localStorage.setItem('savedToDoList', JSON.stringify(list));
+    localStorage.setItem('colorList', JSON.stringify(colorList))
     list = JSON.parse(localStorage.getItem('savedToDoList'));
+    colorList = JSON.parse(localStorage.getItem('colorList'));
 }
 
 function getToDoList() {
     list = JSON.parse(localStorage.getItem('savedToDoList'));
+    colorList = JSON.parse(localStorage.getItem('colorList'));
 }
 
-if (localStorage.getItem('savedToDoList') !== null) {
+function generateRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// if (localStorage.getItem('savedToDoList')) {
+//     getToDoList();
+//     renderList();
+// }
+if (localStorage.getItem('savedToDoList') !== null && localStorage.getItem('colorList')) {
     getToDoList();
     renderList();
 }
