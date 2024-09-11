@@ -6,6 +6,8 @@
 
 This is a simple To-Do List web application that allows users to add tasks, categorize them with color-coded buttons, and manage them with basic CRUD operations. The application uses HTML for structure, CSS for styling, and JavaScript for functionality.
 
+**View project here:** https://pilord1.github.io/Todo-List/
+
 ## Features
 
 - **Add Tasks**: Enter new tasks into the input field and categorize them with randomly assigned colors.
